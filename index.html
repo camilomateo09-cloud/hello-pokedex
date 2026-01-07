@@ -1,26 +1,127 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokedex Listado</title>
-    <link rel="icon" type="image/png" href="img/pokemonicon.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Pokédex</title>
+
+  <!-- Icono -->
+  <link rel="icon" type="image/png" href="img/pokemonicon.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <header>
-        <img src="img/pokedex.png" alt="Pokedex Logo">
-        <h1>Pokedex</h1>
-        <input type="text" id="searchInput" placeholder="Buscar Pokemon...">
-        <button>#</button>
+
+  <!-- CONTENEDOR TIPO TELÉFONO -->
+  <div class="phone">
+
+    <!-- HEADER -->
+    <header class="header">
+      <h1>Pokédex</h1>
+
+      <div class="search-container">
+        <input 
+          type="text" 
+          id="searchInput" 
+          placeholder="Search"
+        >
+        <button class="hash-btn">#</button>
+      </div>
     </header>
-    <main>
-        <ul>
-            <li>
-                <p>#001</p>
-                <img src="https://db.pokemongohub.net/_next/image?url=%2Fimages%2Fofficial%2Ffull%2F001.webp&w=640&q=75">
-                <p>Bulbasaur</p>
-            </li>
-        </ul>
+
+    <!-- CONTENIDO -->
+    <main class="content">
+      <ul class="pokemon-grid">
+
+        <!-- CARD -->
+        <li class="pokemon-card">
+          <span class="number">#001</span>
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
+            alt="Bulbasaur"
+          >
+          <p class="name">Bulbasaur</p>
+        </li>
+
+        <li class="pokemon-card">
+          <span class="number">#004</span>
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png"
+            alt="Charmander"
+          >
+          <p class="name">Charmander</p>
+        </li>
+
+        <li class="pokemon-card">
+          <span class="number">#007</span>
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"
+            alt="Squirtle"
+          >
+          <p class="name">Squirtle</p>
+        </li>
+
+        <li class="pokemon-card">
+          <span class="number">#012</span>
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/12.png"
+            alt="Butterfree"
+          >
+          <p class="name">Butterfree</p>
+        </li>
+
+        <li class="pokemon-card">
+          <span class="number">#025</span>
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
+            alt="Pikachu"
+          >
+          <p class="name">Pikachu</p>
+        </li>
+
+        <li class="pokemon-card">
+          <span class="number">#092</span>
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/92.png"
+            alt="Gastly"
+          >
+          <p class="name">Gastly</p>
+        </li>
+
+        <li class="pokemon-card">
+          <span class="number">#132</span>
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png"
+            alt="Ditto"
+          >
+          <p class="name">Ditto</p>
+        </li>
+
+        <li class="pokemon-card">
+          <span class="number">#152</span>
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/152.png"
+            alt="Mew"
+          >
+          <p class="name">Mew</p>
+        </li>
+
+        <li class="pokemon-card">
+          <span class="number">#304</span>
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/304.png"
+            alt="Aron"
+          >
+          <p class="name">Aron</p>
+        </li>
+
+      </ul>
     </main>
+
+  </div>
+
 </body>
 </html>
