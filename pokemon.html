@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pokédex - Detalle</title>
+
+  <link rel="icon" type="image/png" href="img/pokemonicon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="phone detail" id="detailRoot">
+    <header class="detail-header">
+      <button class="icon-btn" id="backBtn" aria-label="Volver">←</button>
+
+      <div class="detail-title">
+        <h1 id="pokeName">Loading...</h1>
+      </div>
+
+      <div class="detail-number" id="pokeNumber">#000</div>
+    </header>
+
+    <section class="detail-hero">
+      <button class="nav-btn" id="prevBtn" aria-label="Anterior">‹</button>
+      <img id="pokeImg" alt="Pokemon" />
+      <button class="nav-btn" id="nextBtn" aria-label="Siguiente">›</button>
+    </section>
+
+    <main class="detail-card">
+      <div class="types" id="types"></div>
+
+      <h2 class="section-title">About</h2>
+
+      <div class="about-grid">
+        <div class="about-item">
+          <div class="about-value" id="weight">--</div>
+          <div class="about-label">Weight</div>
+        </div>
+
+        <div class="about-item">
+          <div class="about-value" id="height">--</div>
+          <div class="about-label">Height</div>
+        </div>
+
+        <div class="about-item">
+          <div class="about-value" id="ability">--</div>
+          <div class="about-label">Ability</div>
+        </div>
+      </div>
+
+      <p class="desc" id="desc">...</p>
+
+      <h2 class="section-title">Base Stats</h2>
+      <div class="stats" id="stats"></div>
+    </main>
+  </div>
+
+  <script src="pokemon.js"></script>
+</body>
+</html>

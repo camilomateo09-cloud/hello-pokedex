@@ -3,125 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
   <title>Pokédex</title>
 
-  <!-- Icono -->
   <link rel="icon" type="image/png" href="img/pokemonicon.png">
-
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- (Opcional PWA) -->
+  <link rel="manifest" href="manifest.json">
 </head>
 
 <body>
-
-  <!-- CONTENEDOR TIPO TELÉFONO -->
   <div class="phone">
-
-    <!-- HEADER -->
     <header class="header">
       <h1>Pokédex</h1>
 
       <div class="search-container">
-        <input 
-          type="text" 
-          id="searchInput" 
-          placeholder="Search"
-        >
-        <button class="hash-btn">#</button>
+        <input id="searchInput" type="text" placeholder="Search" autocomplete="off">
+        <button class="hash-btn" id="sortBtn" title="Ordenar por #">#</button>
       </div>
     </header>
 
-    <!-- CONTENIDO -->
     <main class="content">
-      <ul class="pokemon-grid">
+      <ul class="pokemon-grid" id="pokemonGrid"></ul>
 
-        <!-- CARD -->
-        <li class="pokemon-card">
-          <span class="number">#001</span>
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
-            alt="Bulbasaur"
-          >
-          <p class="name">Bulbasaur</p>
-        </li>
-
-        <li class="pokemon-card">
-          <span class="number">#004</span>
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png"
-            alt="Charmander"
-          >
-          <p class="name">Charmander</p>
-        </li>
-
-        <li class="pokemon-card">
-          <span class="number">#007</span>
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"
-            alt="Squirtle"
-          >
-          <p class="name">Squirtle</p>
-        </li>
-
-        <li class="pokemon-card">
-          <span class="number">#012</span>
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/12.png"
-            alt="Butterfree"
-          >
-          <p class="name">Butterfree</p>
-        </li>
-
-        <li class="pokemon-card">
-          <span class="number">#025</span>
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
-            alt="Pikachu"
-          >
-          <p class="name">Pikachu</p>
-        </li>
-
-        <li class="pokemon-card">
-          <span class="number">#092</span>
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/92.png"
-            alt="Gastly"
-          >
-          <p class="name">Gastly</p>
-        </li>
-
-        <li class="pokemon-card">
-          <span class="number">#132</span>
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png"
-            alt="Ditto"
-          >
-          <p class="name">Ditto</p>
-        </li>
-
-        <li class="pokemon-card">
-          <span class="number">#152</span>
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/152.png"
-            alt="Mew"
-          >
-          <p class="name">Mew</p>
-        </li>
-
-        <li class="pokemon-card">
-          <span class="number">#304</span>
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/304.png"
-            alt="Aron"
-          >
-          <p class="name">Aron</p>
-        </li>
-
-      </ul>
+      <p class="hint" id="hint">Cargando Pokémon...</p>
     </main>
-
   </div>
 
+  <script src="app.js"></script>
+
+  <!-- (Opcional PWA) -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("./sw.js");
+    }
+  </script>
 </body>
 </html>
