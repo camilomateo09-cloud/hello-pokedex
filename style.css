@@ -1,33 +1,50 @@
+/* =========================================================
+   POKEDEX - style.css
+   FULL WIDTH – SIN FILOS BLANCOS
+   Responsive real: PC / Tablet / Celular
+========================================================= */
+
+/* RESET GLOBAL */
 *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* QUITA CUALQUIER BORDE DEL NAVEGADOR */
+html, body{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #f4f4f4;
+}
+
+/* BODY A PANTALLA COMPLETA */
 body{
-  background:#222;
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding: 20px 0;
+  min-height: 100vh;
+  display: block;
 }
 
-/* CONTENEDOR "TELÉFONO" */
+/* CONTENEDOR PRINCIPAL – FULL WIDTH */
 .phone{
-  width: 360px;
-  border-radius: 28px;
+  width: 100vw;
+  min-height: 100vh;
+  background: #f4f4f4;
   overflow: hidden;
-  background:#f4f4f4;
-  box-shadow: 0 12px 35px rgba(0,0,0,.45);
+  border-radius: 0;
+  box-shadow: none;
 }
 
-/* HEADER LISTA */
+/* =========================
+   HEADER
+========================= */
 .header{
-  background:#d32f2f;
-  padding: 18px;
-  color:#fff;
+  background: #d32f2f;
+  padding: 18px 16px;
+  color: #fff;
+  border-radius: 0;
 }
 
 .header h1{
@@ -36,100 +53,129 @@ body{
   margin-bottom: 10px;
 }
 
+/* =========================
+   BUSCADOR (input + lupa + #)
+========================= */
 .search-container{
-  display:flex;
-  gap:10px;
-  align-items:center;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 .search-container input{
-  flex:1;
-  height: 32px;
-  border:none;
-  outline:none;
-  border-radius:999px;
-  padding: 0 12px;
-  font-size: 13px;
+  flex: 1;
+  height: 38px;
+  border: none;
+  outline: none;
+  border-radius: 999px;
+  padding: 0 14px;
+  font-size: 14px;
 }
 
+/* Botón lupa */
+.search-btn{
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 999px;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-btn img{
+  width: 18px;
+  height: 18px;
+}
+
+/* Botón ordenar # */
 .hash-btn{
-  width: 32px;
-  height: 32px;
-  border:none;
-  border-radius:999px;
-  background:#fff;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 999px;
+  background: #fff;
   font-weight: 800;
-  cursor:pointer;
+  cursor: pointer;
 }
 
+/* CONTENIDO */
 .content{
-  padding: 14px;
+  padding: 16px;
 }
 
-/* GRID 3X */
+/* =========================
+   GRID RESPONSIVE REAL
+========================= */
 .pokemon-grid{
-  list-style:none;
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
 }
 
-/* CARD (en lista) */
+/* =========================
+   TARJETA POKÉMON
+========================= */
 .pokemon-card{
-  background:#fff;
-  border-radius: 14px;
-  padding: 10px 8px 12px;
-  text-align:center;
-  position:relative;
-  min-height: 115px;
-  text-decoration:none;
+  background: #fff;
+  border-radius: 16px;
+  padding: 14px 12px;
+  text-align: center;
+  position: relative;
+  min-height: 150px;
+  text-decoration: none;
   color: inherit;
+  transition: transform .12s ease;
 }
 
 .pokemon-card:hover{
   transform: translateY(-2px);
-  transition: .12s ease;
 }
 
 .pokemon-card img{
-  width: 58px;
-  height: 58px;
+  width: 68px;
+  height: 68px;
   object-fit: contain;
-  margin-top: 6px;
+  margin-top: 8px;
 }
 
 .pokemon-card .name{
-  margin-top: 6px;
-  font-size: 12px;
+  margin-top: 8px;
+  font-size: 14px;
   font-weight: 700;
-  color:#333;
+  color: #333;
   text-transform: capitalize;
 }
 
 .pokemon-card .number{
-  position:absolute;
-  top: 8px;
-  right: 10px;
-  font-size: 10px;
-  color:#b0b0b0;
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 11px;
+  color: #b0b0b0;
   font-weight: 800;
 }
 
+/* TEXTO DE ESTADO */
 .hint{
-  margin-top: 10px;
-  font-size: 12px;
-  color:#777;
-  text-align:center;
+  margin-top: 12px;
+  font-size: 13px;
+  color: #777;
+  text-align: center;
 }
 
-/* ===== DETAIL ===== */
+/* =========================================================
+   DETAIL PAGE
+========================================================= */
 .phone.detail{
-  background: #7ac74c; /* se cambia por JS */
+  background: #7ac74c;
 }
 
 .detail-header{
-  background: transparent;
-  padding: 18px 18px 8px;
+  padding: 18px 16px 8px;
   color: #fff;
   display: grid;
   grid-template-columns: 44px 1fr auto;
@@ -150,7 +196,6 @@ body{
 
 .detail-title h1{
   font-size: 22px;
-  margin: 0;
   font-weight: 800;
   text-transform: capitalize;
 }
@@ -160,53 +205,56 @@ body{
   opacity: .9;
 }
 
+/* HERO */
 .detail-hero{
   position: relative;
-  height: 220px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding: 10px 0 0;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .detail-hero img{
-  width: 210px;
-  height: 210px;
+  width: 230px;
+  height: 230px;
   object-fit: contain;
   filter: drop-shadow(0 10px 16px rgba(0,0,0,.18));
 }
 
 .nav-btn{
-  position:absolute;
+  position: absolute;
   top: 50%;
   transform: translateY(-50%);
   border: none;
   background: rgba(255,255,255,.20);
-  color:#fff;
-  width: 36px;
-  height: 60px;
-  border-radius: 14px;
+  color: #fff;
+  width: 40px;
+  height: 64px;
+  border-radius: 16px;
   cursor: pointer;
-  font-size: 26px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#prevBtn{ left: 12px; }
-#nextBtn{ right: 12px; }
+#prevBtn{ left: 14px; }
+#nextBtn{ right: 14px; }
 
+/* CARD DETALLE */
 .detail-card{
   background: #fff;
-  border-radius: 22px 22px 28px 28px;
+  border-radius: 24px 24px 0 0;
   padding: 18px;
+  min-height: calc(100vh - 300px);
 }
 
+/* TIPOS */
 .types{
-  display:flex;
-  gap:10px;
-  justify-content:center;
-  margin-top: 6px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .type-pill{
@@ -215,23 +263,23 @@ body{
   color: #fff;
   font-weight: 800;
   font-size: 12px;
-  text-transform: capitalize;
 }
 
+/* SECCIONES */
 .section-title{
-  text-align:center;
+  text-align: center;
   margin: 14px 0 10px;
   font-size: 18px;
   font-weight: 900;
   color: #4a4a4a;
 }
 
+/* ABOUT */
 .about-grid{
-  display:grid;
+  display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  text-align:center;
-  margin: 10px 0 8px;
+  text-align: center;
 }
 
 .about-item{
@@ -242,61 +290,164 @@ body{
 
 .about-value{
   font-weight: 900;
-  color: #333;
   font-size: 14px;
-  text-transform: capitalize;
 }
 
 .about-label{
-  margin-top: 4px;
   font-size: 11px;
   color: #999;
 }
 
+/* DESCRIPCIÓN */
 .desc{
-  color:#666;
+  color: #666;
   font-size: 13px;
   line-height: 1.35;
-  text-align: left;
   margin: 10px 0 14px;
 }
 
+/* STATS */
 .stats{
-  display:flex;
+  display: flex;
   flex-direction: column;
   gap: 10px;
-  padding-bottom: 10px;
 }
 
 .stat-row{
-  display:grid;
+  display: grid;
   grid-template-columns: 44px 36px 1fr;
   gap: 10px;
-  align-items:center;
+  align-items: center;
   font-size: 12px;
 }
 
 .stat-name{
-  color:#777;
   font-weight: 900;
+  color: #777;
 }
 
 .stat-val{
-  color:#333;
   font-weight: 900;
-  text-align:right;
+  text-align: right;
 }
 
 .bar{
   height: 8px;
   background: #eee;
   border-radius: 999px;
-  overflow:hidden;
+  overflow: hidden;
 }
 
 .bar > div{
   height: 100%;
-  width: 0%;
   background: #7ac74c;
   border-radius: 999px;
+}
+/* =========================================
+   DETAIL FULL WIDTH (bordes en todos tamaños)
+========================================= */
+
+/* Asegura que la página de detalle ocupe todo el ancho/alto */
+.phone.detail{
+  width: 100vw;
+  min-height: 100vh;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+/* Header del detalle pegado a bordes */
+.detail-header{
+  padding: 18px 16px 10px;
+}
+
+/* Imagen responsive (no fija) */
+.detail-hero{
+  height: clamp(220px, 35vw, 340px);
+  padding-top: 8px;
+}
+
+.detail-hero img{
+  width: clamp(180px, 35vw, 320px);
+  height: auto;
+  max-height: 320px;
+}
+
+/* Card blanca inferior pegada a bordes */
+.detail-card{
+  border-radius: 24px 24px 0 0; /* si quieres completamente recto: pon 0 */
+  padding: 18px 16px 22px;
+  min-height: calc(100vh - 320px);
+}
+.pagination{
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+.pagination button{
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 999px;
+  background: #d32f2f;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.pagination button:disabled{
+  opacity: 0.4;
+  cursor: default;
+}
+
+#pageInfo{
+  font-weight: 700;
+  color: #444;
+}
+/* ===== FILTRO ===== */
+.filter-container{
+  margin-top: 10px;
+}
+
+.filter-container select{
+  width: 100%;
+  height: 38px;
+  border: none;
+  outline: none;
+  border-radius: 999px;
+  padding: 0 14px;
+  font-size: 14px;
+}
+
+/* ===== PAGINACIÓN ===== */
+.pagination{
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+.pagination button{
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 999px;
+  background: #d32f2f;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.pagination button:disabled{
+  opacity: 0.4;
+  cursor: default;
+}
+
+#pageInfo{
+  font-weight: 700;
+  color: #444;
 }

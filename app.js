@@ -1,24 +1,47 @@
 const API = "https://pokeapi.co/api/v2";
+
 const grid = document.getElementById("pokemonGrid");
 const hint = document.getElementById("hint");
+
 const searchInput = document.getElementById("searchInput");
+const searchBtn = document.getElementById("searchBtn");
 const sortBtn = document.getElementById("sortBtn");
 
-let allPokemon = [];
-let sortAsc = true; // true = 001.., false = reverse
+const typeFilter = document.getElementById("typeFilter");
 
-function pad3(n){ return String(n).padStart(3,"0"); }
+const prevPageBtn = document.getElementById("prevPage");
+const nextPageBtn = document.getElementById("nextPage");
+const pageInfo = document.getElementById("pageInfo");
+
+let allPokemon = [];
+let filteredPokemon = [];
+
+let sortAsc = true;
+let currentPage = 1;
+const pageSize = 24;
+
+function pad3(n){
+  return String(n).padStart(3,"0");
+}
 
 async function fetchJson(url){
   const res = await fetch(url);
-  if(!res.ok) throw new Error("Error cargando " + url);
+  if(!res.ok) throw new Error("Error cargando: " + url);
   return res.json();
 }
 
-function render(list){
+/* Render por página */
+function render(){
   grid.innerHTML = "";
 
-  list.forEach(p => {
+  const totalPages = Math.max(1, Math.ceil(filteredPokemon.length / pageSize));
+  if(currentPage > totalPages) currentPage = totalPages;
+
+  const start = (currentPage - 1) * pageSize;
+  const end = start + pageSize;
+  const pageItems = filteredPokemon.slice(start, end);
+
+  pageItems.forEach(p => {
     const a = document.createElement("a");
     a.className = "pokemon-card";
     a.href = `pokemon.html?id=${p.id}`;
@@ -30,47 +53,101 @@ function render(list){
     grid.appendChild(a);
   });
 
-  hint.textContent = list.length ? "" : "No se encontraron resultados.";
+  pageInfo.textContent = `${currentPage} / ${totalPages}`;
+  prevPageBtn.disabled = currentPage === 1;
+  nextPageBtn.disabled = currentPage === totalPages;
+
+  hint.textContent = filteredPokemon.length ? "" : "No se encontraron resultados.";
 }
 
-function applySearch(){
+/* Aplica búsqueda + filtro tipo + orden */
+function applyFilters(){
   const q = searchInput.value.trim().toLowerCase();
-  let filtered = allPokemon;
+  const selectedType = typeFilter.value;
 
+  let list = allPokemon;
+
+  // 1) Búsqueda por nombre o id
   if(q){
-    filtered = allPokemon.filter(p =>
+    list = list.filter(p =>
       p.name.includes(q) || String(p.id).includes(q)
     );
   }
 
-  // orden actual
-  filtered = [...filtered].sort((a,b) => sortAsc ? a.id-b.id : b.id-a.id);
-  render(filtered);
+  // 2) Filtro por tipo (ej: fire)
+  if(selectedType){
+    list = list.filter(p => p.types.includes(selectedType));
+  }
+
+  // 3) Orden
+  list = [...list].sort((a,b) => sortAsc ? a.id - b.id : b.id - a.id);
+
+  filteredPokemon = list;
+
+  // cada vez que cambias filtros, vuelves a la página 1
+  currentPage = 1;
+  render();
 }
 
-async function loadFirst151(){
-  hint.textContent = "Cargando Pokémon...";
-  // trae lista básica
+/* Cargar 151 Pokémon con tipos */
+async function loadPokemon(){
+  hint.textContent = "Cargando Pokémon y tipos...";
+
+  // lista base
   const data = await fetchJson(`${API}/pokemon?limit=151&offset=0`);
 
-  // construye ids/imágenes sin pedir 151 fetch extra
-  allPokemon = data.results.map((item, idx) => {
+  // 151 requests (para tipos) — OK para el ejercicio
+  const promises = data.results.map(async (item, idx) => {
     const id = idx + 1;
-    const img = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
-    return { id, name: item.name, img };
+
+    const details = await fetchJson(`${API}/pokemon/${id}`);
+    const types = details.types.map(t => t.type.name);
+
+    return {
+      id,
+      name: item.name,
+      img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`,
+      types
+    };
   });
 
-  applySearch();
+  allPokemon = await Promise.all(promises);
+
   hint.textContent = "";
+  applyFilters();
 }
 
-searchInput.addEventListener("input", applySearch);
+/* ===== Eventos ===== */
+
+searchInput.addEventListener("input", applyFilters);
+
+searchInput.addEventListener("keydown", (e) => {
+  if(e.key === "Enter") applyFilters();
+});
+
+searchBtn.addEventListener("click", () => {
+  applyFilters();
+  searchInput.focus();
+});
 
 sortBtn.addEventListener("click", () => {
   sortAsc = !sortAsc;
-  applySearch();
+  applyFilters();
 });
 
-loadFirst151().catch(err => {
-  hint.textContent = "Error cargando Pokédex: " + err.message;
+typeFilter.addEventListener("change", applyFilters);
+
+prevPageBtn.addEventListener("click", () => {
+  currentPage--;
+  render();
+});
+
+nextPageBtn.addEventListener("click", () => {
+  currentPage++;
+  render();
+});
+
+/* Iniciar */
+loadPokemon().catch(err => {
+  hint.textContent = "Error: " + err.message;
 });

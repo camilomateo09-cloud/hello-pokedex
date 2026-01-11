@@ -7,9 +7,6 @@
 
   <link rel="icon" type="image/png" href="img/pokemonicon.png">
   <link rel="stylesheet" href="style.css">
-
-  <!-- (Opcional PWA) -->
-  <link rel="manifest" href="manifest.json">
 </head>
 
 <body>
@@ -19,24 +16,50 @@
 
       <div class="search-container">
         <input id="searchInput" type="text" placeholder="Search" autocomplete="off">
+
+        <button class="search-btn" id="searchBtn" aria-label="Buscar">
+          <img src="img/search.png" alt="Buscar">
+        </button>
+
         <button class="hash-btn" id="sortBtn" title="Ordenar por #">#</button>
+      </div>
+
+      <!-- ✅ FILTRO POR TIPO -->
+      <div class="filter-container">
+        <select id="typeFilter" aria-label="Filtrar por tipo">
+          <option value="">Todos los tipos</option>
+          <option value="fire">Fire</option>
+          <option value="water">Water</option>
+          <option value="grass">Grass</option>
+          <option value="electric">Electric</option>
+          <option value="bug">Bug</option>
+          <option value="poison">Poison</option>
+          <option value="normal">Normal</option>
+          <option value="ground">Ground</option>
+          <option value="fairy">Fairy</option>
+          <option value="fighting">Fighting</option>
+          <option value="psychic">Psychic</option>
+          <option value="rock">Rock</option>
+          <option value="ghost">Ghost</option>
+          <option value="ice">Ice</option>
+          <option value="dragon">Dragon</option>
+        </select>
       </div>
     </header>
 
     <main class="content">
       <ul class="pokemon-grid" id="pokemonGrid"></ul>
-
       <p class="hint" id="hint">Cargando Pokémon...</p>
+
+      <!-- ✅ PAGINACIÓN -->
+      <div class="pagination">
+        <button id="prevPage">◀</button>
+        <span id="pageInfo">1</span>
+        <button id="nextPage">▶</button>
+      </div>
     </main>
   </div>
 
   <script src="app.js"></script>
-
-  <!-- (Opcional PWA) -->
-  <script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("./sw.js");
-    }
-  </script>
 </body>
 </html>
